@@ -77,6 +77,37 @@ http.createServer(function(req, res){
 		});
 	}
 
+	else if(currentUrl.pathname === "/hobid"){
+		res.writeHead(200, {"Content-type": "text/html"});
+		res.write(pageStart);
+		res.write(pageBody);
+		res.write(pageBanner);
+		res.write("\n\t<p>Täna on " + dateEt.weekDay() + " " + dateEt.longDate() + " " + dateEt.time() + ".</p>");
+		res.write("\n\t<h2>Minu hobid</h2>");
+		res.write(`
+			<ul>
+				<li>
+					<a href="https://www.ironman.com/races/im-tallinn" target="_blank">Ironman</a><br>
+					<img src="metsatriatlon.png" alt="Ironmani pilt"> 				
+				</li>
+				<li>
+					<a href="https://www.sofascore.com/" target="_blank">Premier league</a><br>
+					<img src="Arsenal.png" alt="Arsenal"> 
+				</li>
+				<li>
+					<a href="https://www.jalgpall.ee/" target="_blank">Jalgpall</a><br>
+					<img src="pelgu.jpg" alt="Pelgu"> 
+				</li>
+				<li>
+					<a href="https://oldschool.runescape.com/" target="_blank">Oldschool Runescape</a><br>
+					<img src="osrs.jpg" alt="Oldschool Runescape"> 
+				</li>
+			</ul>
+		`);
+		res.write(pageEnd);
+		return res.end();
+	}
+
 	else {
 		res.end("Viga 404, sellist lehte ei ole olemas!");
 	}
